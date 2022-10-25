@@ -14,6 +14,12 @@ import { map,tap } from 'rxjs';
 
 export class AuthService {
 
+	refreshTokenPayload = {
+		refreshToken = this.getRefreshToken();
+		username = this.getUserName();
+
+	}
+
   constructor(private httpClient:HttpClient, private localStorage: LocalStorageService) { }
 
   signup(signupRequestPayload:SignupRequestPayload):Observable<any>{
@@ -65,4 +71,24 @@ export class AuthService {
   getExpirationTime(){
 	return this.localStorage.retrieve('expireAt');
   }
+
+
+  logout() {
+	this.httpClient.post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {responseType:'text'}).subscribe({
+		next:(data:any) =>{
+			console.log(data);
+		},
+
+		error:(err:Error) => {
+			console.log(err);
+		}
+	})
+  }
+
+
+  isLoggedIn(): boolean{
+	return this.getJwtToken() != null;
+  }
+
+
 }

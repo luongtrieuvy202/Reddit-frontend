@@ -17,6 +17,11 @@ import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit
 import { VoteButtonComponent } from './shared/vote-button/vote-button.component';
 import { CreateSubredditComponent } from './subreddit/create-subreddit/create-subreddit.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
+import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { ViewPostComponent } from './post/view-post/view-post.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,8 @@ import { CreatePostComponent } from './post/create-post/create-post.component';
     VoteButtonComponent,
     CreateSubredditComponent,
     CreatePostComponent,
+    ListSubredditsComponent,
+    ViewPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,10 @@ import { CreatePostComponent } from './post/create-post/create-post.component';
     AuthModule,
 	NgxWebstorageModule.forRoot(),
 	BrowserAnimationsModule,
-	ToastrModule.forRoot()
+	ToastrModule.forRoot(),
+	FontAwesomeModule,
+	EditorModule,
+	NgbModule
   ],
   providers: [{
 	provide:HTTP_INTERCEPTORS,
